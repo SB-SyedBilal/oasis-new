@@ -20,7 +20,7 @@ import Box2 from '../assets/HowItWorks/Box2.svg'
 import Box3 from '../assets/HowItWorks/Box3.svg'
 import Box4 from '../assets/HowItWorks/Box4.svg'
 
-import MaleAvatar from '../assets/testimonial/male.svg'
+import MaleAvatar from '../assets/testimonial/Male.svg'
 import FemaleAvatar from '../assets/testimonial/Female.svg'
 
 // Social media icons
