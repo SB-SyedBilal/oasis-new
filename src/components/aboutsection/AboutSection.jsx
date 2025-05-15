@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 import { PRIMARY_GREEN, PRIMARY_TEXT } from '../../utils/theme';
+import featureImg from "../../../src/assets/afterheroassets/home-highlights/Features.svg"
 
 const AboutSection = () => {
   return (
@@ -11,7 +12,7 @@ const AboutSection = () => {
           <div className="relative w-full max-w-[600px]">
             <div className="absolute -top-4 -left-4 w-20 h-20 bg-green-50 rounded-lg z-0"></div>
             <img
-              src="../../../src/assets/afterheroassets/home-highlights/Features.svg"
+              src={featureImg}
               alt="Student studying"
               className="rounded-lg shadow-md relative z-10 w-full h-auto object-cover"
             />
