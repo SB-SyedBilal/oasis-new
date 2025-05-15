@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { testimonialsData } from "../../../utils/constant"
-import TestimonialBg from "../../../assets/testimonial/bg.svg"
+import TestimonialBg from "../../../assets/Testimonial/bg.svg"
 
 const Testimonials = () => {
   const reviews = testimonialsData.reviews;
