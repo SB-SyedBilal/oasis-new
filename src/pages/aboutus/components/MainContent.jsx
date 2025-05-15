@@ -1,5 +1,6 @@
 import { aboutUsContent } from "../../../utils/constant" // adjust path if needed
 import { PRIMARY_GREEN } from "../../../utils/theme"
+import WhoWeAre from "../../../assets/afterheroassets/about-team/WhoWeAre.svg"
 
 const MainContent = () => {
   const { leftSection, rightSection } = aboutUsContent
@@ -13,7 +14,7 @@ const MainContent = () => {
             <div className="p-6 md:p-10 space-y-8">
               <div
                 className="w-full h-64 md:h-96 rounded-lg md:rounded-xl bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: "url('../../../src/assets/afterheroassets/about-team/WhoWeAre.svg')" }}
+                style={{ backgroundImage: `url(${WhoWeAre})` }}
               ></div>
 
               <div className="space-y-4">

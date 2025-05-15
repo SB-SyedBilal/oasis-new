@@ -1,6 +1,7 @@
 import Offer from "./components/Offer";
 import MainContent from "./components/MainContent";
 import Helmet from "react-helmet";
+import AboutUsBg from "../../assets/Hero/AboutUs.png"
 
 const AboutUs = () => {
   return (
@@ -15,7 +16,7 @@ const AboutUs = () => {
         <div
           className="absolute inset-0 bg-stone-950 bg-opacity-60 bg-blend-overlay"
           style={{
-            backgroundImage: "url('../../../src/assets/Hero/AboutUs.png')", // Replace with your actual image path
+            backgroundImage: `url(${AboutUsBg})`, // Replace with your actual image path
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",

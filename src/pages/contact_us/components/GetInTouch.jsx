@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaEnvelope, FaPhone } from "react-icons/fa";
+import GetInTouchImg from "../../../assets/afterheroassets/contactus-banner/GetInTouch.jpg"
 
 const Main = () => {
   return (
@@ -9,7 +10,7 @@ const Main = () => {
           {/* Left side - Image */}
           <div className="w-full md:w-1/2">
             <img
-              src="../../../src/assets/afterheroassets/contactus-banner/GetInTouch.jpg"
+              src={GetInTouchImg}
               alt="Contact us"
               className="h-auto w-full max-w-[565px] rounded-lg object-cover"
             />
