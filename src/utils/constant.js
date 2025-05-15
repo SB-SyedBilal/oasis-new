@@ -15,13 +15,37 @@ import Psychology from '../assets/Hero/Psychology.svg';
 import BusinessLaw from '../assets/Hero/BusinessLaw.svg';
 
 
+import Box1 from '../assets/HowItWorks/Box1.svg'
+import Box2 from '../assets/HowItWorks/Box2.svg'
+import Box3 from '../assets/HowItWorks/Box3.svg'
+import Box4 from '../assets/HowItWorks/Box4.svg'
+
+import MaleAvatar from '../assets/testimonial/male.svg'
+import FemaleAvatar from '../assets/testimonial/Female.svg'
+
+// Social media icons
+import FacebookIcon from '../assets/socials/facebook.svg'
+import XIcon from '../assets/socials/X.svg'
+import InstaIcon from '../assets/socials/Insta.svg'
+
+// Team images
+import TeamImg1 from '../assets/afterheroassets/about-team/img1.svg'
+import TeamImg2 from '../assets/afterheroassets/about-team/img2.svg'
+import TeamImg3 from '../assets/afterheroassets/about-team/img3.svg'
+import TeamImg4 from '../assets/afterheroassets/about-team/img4.svg'
+
+// Journey step icons
+import ContactIcon from '../assets/socials/call us.svg'
+import WhatsAppIcon from '../assets/socials/whatsapp.svg'
+import LocationIcon from '../assets/socials/locattion.svg'
+import MailIcon from '../assets/socials/mailus.svg'
 
 
 const OFFER_ITEMS = {
   title: "Building a Thriving, Inclusive, and Engaged Learning Community",
   offer: [
     {
-      icon: "../../../src/assets/afterheroassets/about-team/img1.svg",
+      icon: TeamImg1,
       title: "Student Engagement",
       description: `Highlight the opportunities
 for students to engage with
@@ -30,17 +54,17 @@ leadership roles within the
 academy.`,
     },
     {
-      icon: "../../../src/assets/afterheroassets/about-team/img2.svg",
+      icon: TeamImg2,
       title: "Parental Involvement",
       description: `Illustrate how parents are
 integral to the community,
 participating in events,
 contributing to decision-making
 processes, and supporting the
-academy’s initiatives.`,
+academy's initiatives.`,
     },
     {
-      icon: "../../../src/assets/afterheroassets/about-team/img3.svg",
+      icon: TeamImg3,
       title: "Collaborative Projects",
       description: `Showcase collaborative
 projects and community
@@ -50,9 +74,9 @@ community members working
 together.`,
     },
     {
-      icon: "../../../src/assets/afterheroassets/about-team/img4.svg",
+      icon: TeamImg4,
       title: "Cultural & Global Awareness",
-      description: `Emphasize the academy’s
+      description: `Emphasize the academy's
 dedication to promoting
 cultural diversity and global
 awareness.`,
@@ -92,24 +116,24 @@ const cardDetails = [
   {
     id: "1",
     title: "Contacting us with your requirements.",
-    bg1: "../../../src/assets/HowItWorks/Box1.svg",
+    bg1: Box1,
   },
   {
     id: "2",
     title: "Enjoying a free, no-obligation demo class.",
-    bg1: "../../../src/assets/HowItWorks/Box2.svg",
-    bg2: "../../../src/assets/HowItWorks/Box4.svg",
+    bg1: Box2,
+    bg2: Box4,
   },
   {
     id: "3",
     title: "Customizing a schedule that suits you.",
-    bg1: "../../../src/assets/HowItWorks/Box3.svg",
+    bg1: Box3,
   },
   {
     id: "4",
     title: "Watching your child advance with every session.",
-    bg1: "../../../src/assets/HowItWorks/Box2.svg",
-    bg2: "../../../src/assets/HowItWorks/Box4.svg",
+    bg1: Box2,
+    bg2: Box4,
   },
 ];
 
@@ -151,19 +175,19 @@ const navigationLinks = [
 const journeySteps = [
   {
     title: "Contacting us with your requirements.",
-    icon: "/icons/contact.png", // update with your actual icon path
+    icon: ContactIcon,
   },
   {
     title: "Enjoying a free, no-obligation demo class.",
-    icon: "/icons/demo.png",
+    icon: WhatsAppIcon,
   },
   {
     title: "Customizing a schedule that suits you.",
-    icon: "/icons/schedule.png",
+    icon: LocationIcon,
   },
   {
     title: "Watching your child advance with every session.",
-    icon: "/icons/progress.png",
+    icon: MailIcon,
   },
 ];
 
@@ -178,35 +202,35 @@ const testimonialsData = {
       name: "Mr. Ahmed Zaid",
       role: "Biology, Physics",
       text: "We are very satisfied and already recommended your academy to many colleagues.",
-      avatar: "../../../src/assets/testimonial/male.svg",
+      avatar: MaleAvatar,
     },
     {
       id: 2,
       name: "Mrs. Faisal Dubai",
       role: "ICT",
       text: "I am happy with the service and will definitely recommend you to other parents.",
-      avatar: "../../../src/assets/testimonial/male.svg",
+      avatar: MaleAvatar,
     },
     {
       id: 3,
       name: "Mr. Suresh",
       role: "Maths Grade 8",
       text: "Yes, we are satisfied with the classes 👏👏 Siddhi is understanding very well. Please continue to help her",
-      avatar: "../../../src/assets/testimonial/male.svg",
+      avatar: MaleAvatar,
     },
     {
       id: 4,
       name: "Mrs. Maryam Abbasi",
       role: "Maths & Physics",
       text: "Thank you, your services are impressive, and I do expect good services in fututre as well.",
-      avatar: "../../../src/assets/testimonial/Female.svg",
+      avatar: FemaleAvatar,
     },
     {
       id: 5,
       name: "Zainab Tariq",
       role: "Maths",
       text: "Thank you. It was really good experience. I have given your number to my other friends.",
-      avatar: "../../../src/assets/testimonial/Female.svg",
+      avatar: FemaleAvatar,
     },
   ],
 };
@@ -258,17 +282,17 @@ const footerSocials = [
   {
     id: 1,
     name: "Meta (formerly facebook)",
-    // logo: new URL("../assets/socials/facebook.svg", import.meta.url),
+    logo: FacebookIcon,
   },
   {
     id: 2,
     name: "X (formerly twitter)",
-    // logo: new URL("../assets/socials/twitter.svg", import.meta.url),
+    logo: XIcon,
   },
   {
     id: 3,
     name: "Instagram",
-    // logo: new URL("../assets/socials/instagram.svg", import.meta.url),
+    logo: InstaIcon,
   },
 ];
 

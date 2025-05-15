@@ -1,5 +1,6 @@
 import React from 'react'
 import { FaCheckCircle } from 'react-icons/fa'
+import ServiceImg from '../../../../src/assets/afterheroassets/home-highlights/ourservices.svg'
 
 const OurServices = () => {
   return (
@@ -63,7 +64,7 @@ const OurServices = () => {
         <div className="flex-1 bg-gray-50">
           <div className="h-full flex items-center justify-center p-0">
             <img
-              src="../../../src/assets/afterheroassets/home-highlights/ourservices.svg"
+              src={ServiceImg}
               alt="Student with laptop"
               className="w-full h-full object-cover"
             />

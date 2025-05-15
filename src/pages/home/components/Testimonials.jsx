@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { testimonialsData } from "../../../utils/constant"
+import TestimonialBg from "../../../assets/testimonial/bg.svg"
 
 const Testimonials = () => {
   const reviews = testimonialsData.reviews;
@@ -101,7 +102,7 @@ const Testimonials = () => {
     <div className="relative w-full overflow-hidden bg-[#2A2A2A] py-16 md:py-24">
       <div
         className="absolute inset-0 overflow-hidden bg-cover md:bg-center lg:bg-top"
-        style={{ backgroundImage: "url('../../../src/assets/testimonial/bg.svg')" }}
+        style={{ backgroundImage: `url(${TestimonialBg})` }}
       ></div>
 
       <div className="relative  text-center z-10 px-6 max-w-[1440px] m-auto">

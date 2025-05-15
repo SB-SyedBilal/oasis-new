@@ -1,67 +1,79 @@
 import React from "react";
 import { SUBJECTS } from '../../utils/constant';
+import Maths from '../../../src/assets/Subjects/maths.svg'
+import Bio from '../../../src/assets/Subjects/biology.svg'
+import Chem from '../../../src/assets/Subjects/chemistry.svg'
+import Phy from '../../../src/assets/Subjects/physics.svg'
+import Eng from '../../../src/assets/Subjects/english.svg'
+import cs from '../../../src/assets/Subjects/cs.svg'
+import bs from '../../../src/assets/Subjects/bs.svg'
+import acc from '../../../src/assets/Subjects/accounting.svg'
+import eco from '../../../src/assets/Subjects/economics.svg'
+import psycho from '../../../src/assets/Subjects/psychology.svg'
+import socio from '../../../src/assets/Subjects/sociology.svg'
+import bl from '../../../src/assets/Subjects/bl.svg'
 
 // Map extra info by slug (for DRYness)
 const SUBJECT_EXTRA = {
   mathematics: {
     description: "Master critical thinking and problem-solving skills with our expert Maths tutors. From algebra to calculus, we'll help you excel in this essential subject.",
     hoverText: "At The Oasis Academy, we believe that Mathematics is not just a subject but a critical tool for life.",
-    img: "../../../src/assets/Subjects/maths.svg",
+    img: Maths,
   },
   biology: {
     description: "Explore the wonders of life sciences with our Biology tutoring. From cellular processes to ecosystems, our tutors will help you understand and appreciate the complexity of living organisms.",
     hoverText: "Biology, the study of living organisms and life processes, is a fascinating and essential scientific discipline.",
-    img: "../../../src/assets/Subjects/biology.svg",
+    img: Bio,
   },
   chemistry: {
     description: "Discover the building blocks of matter and the reactions that shape our world. Our Chemistry tutors will guide you through this fascinating subject with clarity and expertise.",
     hoverText: "Chemistry, often known as the central science, bridges the gap between physics and biology.",
-    img: "../../../src/assets/Subjects/chemistry.svg",
+    img: Chem,
   },
   physics: {
     description: "Physics, the fundamental science of matter and energy, is at the heart of understanding how the universe operates.",
     hoverText: "Physics, the fundamental science of matter and energy",
-    img: "../../../src/assets/Subjects/physics.svg",
+    img: Phy,
   },
   english: {
     description: "Master the English language with comprehensive literature, writing, and reading comprehension.",
     hoverText: "Our English program, designed specifically for students from Saudi Arabia, Qatar, and Oman.",
-    img: "../../../src/assets/Subjects/english.svg",
+    img: Eng,
   },
   "computer-science": {
     description: "The Oasis Academy’s Computer Science program is crafted to empower students in Saudi Arabia, Qatar, and Oman.",
     hoverText: "Computer Science is integral to modern life, underpinning the technologies we use every day and driving innovation in every sector.",
-    img: "../../../src/assets/Subjects/cs.svg",
+    img: cs,
   },
   "business-studies": {
     description: "Business Studies is more than just a subject; it’s a vital educational foundation for anyone looking to enter the world of commerce, finance, or entrepreneurship.",
     hoverText: "Understand the world of commerce and entrepreneurship with our business studies program.",
-    img: "../../../src/assets/Subjects/bs.svg",
+    img: bs,
   },
   accounting: {
     description: "Navigate the financial aspects of business with ease. Our accounting tutors offer clarity and guidance on this critical subject.",
     hoverText: "Accounting is essential for understanding and managing the financial aspects of businesses and personal finances.",
-    img: "../../../src/assets/Subjects/accounting.svg",
+    img: acc,
   },
   economics: {
     description: "Explore the fundamentals of economics with our experienced tutors who bring real-world scenarios to the classroom.",
     hoverText: "Economics is fundamental to understanding the forces that shape our lives, from global markets to personal finance decisions.",
-    img: "../../../src/assets/Subjects/economics.svg",
+    img: eco,
   },
   psychology: {
     description: "Delve into the human mind, learning about behavior, cognition, and emotion with our engaging psychology tutors.",
     hoverText: "Psychology is pivotal for understanding ourselves and the people around us.",
-    img: "../../../src/assets/Subjects/psychology.svg",
+    img: psycho,
   },
   sociology: {
     description: "Examine society and social behavior by understanding how human action and consciousness both shape.",
     hoverText: "Sociology offers invaluable insights into the functioning of societies, communities, and social groups.",
-    img: "../../../src/assets/Subjects/sociology.svg",
+    img: { socio },
   },
   "business-law": {
     description: "Explore the fundamentals of economics with our experienced tutors who bring real-world scenarios to the classroom.",
     hoverText: "Business Law is more than a mere subject in our curriculum; it’s a critical compass for navigating the legal landscapes of the business world.",
-    img: "../../../src/assets/Subjects/bl.svg",
+    img: bl,
   },
 };
 
