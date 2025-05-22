@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import emailjs from "@emailjs/browser"
 import { useNavigate } from "react-router-dom"
 import { freeDemo } from "../../utils/constant"
@@ -7,7 +7,6 @@ import { isValidEmail, isValidName, isValidPhone, isRequired, sanitizeInput } fr
 import { PRIMARY_GREEN, PRIMARY_TEXT, ERROR } from "../../utils/theme"
 import { FaChevronDown } from "react-icons/fa"
 
-// Helper function to generate appropriate placeholders based on field ID or label
 const getPlaceholder = (id, label) => {
   switch (id) {
     case 'fullName':
@@ -40,6 +39,14 @@ const getPlaceholder = (id, label) => {
 
 const DemoForm = () => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const publicKey = import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
+    if (publicKey) {
+      emailjs.init(publicKey)
+    }
+  }, [])
+
   const [formData, setFormData] = useState({
     fullName: "",
     parentName: "",
@@ -59,18 +66,13 @@ const DemoForm = () => {
     let validatedValue = value
     let fieldError = undefined
 
-    // Validate input as it's entered
     if (value.trim() !== '') {
       switch (name) {
         case 'fullName':
         case 'studentName':
-          if (!isValidName(value)) {
-            fieldError = 'Please enter a valid name (letters, spaces, hyphens, apostrophes only)'
-          }
-          break
         case 'parentName':
           if (!isValidName(value)) {
-            fieldError = 'Please enter a valid parent name (letters, spaces, hyphens, apostrophes only)'
+            fieldError = 'Please enter a valid name (letters, spaces, hyphens, apostrophes only)'
           }
           break
         case 'email':
@@ -80,10 +82,8 @@ const DemoForm = () => {
           break
         case 'contactNumber':
         case 'contact':
-          // Allow only numbers, +, spaces, and hyphens
           validatedValue = value.replace(/[^0-9+\s-]/g, '')
           if (validatedValue !== value) {
-            // If we had to sanitize the input, show a gentle reminder
             fieldError = 'Phone numbers can only contain digits, +, spaces, and hyphens'
           } else if (value.trim() !== '' && !isValidPhone(value)) {
             fieldError = 'Please enter a valid phone number'
@@ -92,65 +92,29 @@ const DemoForm = () => {
       }
     }
 
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: validatedValue,
-    }))
-
+    setFormData((prevData) => ({ ...prevData, [name]: validatedValue }))
     setErrors((prev) => ({ ...prev, [name]: fieldError }))
   }
 
-  // Validate all fields before submission
   const validateFields = () => {
     const newErrors = {}
 
-    // Student Name validation
-    if (!isRequired(formData.fullName)) {
-      newErrors.fullName = "Student name is required."
-    } else if (!isValidName(formData.fullName)) {
-      newErrors.fullName = "Please enter a valid name (letters, spaces, hyphens, apostrophes only)."
-    }
+    if (!isRequired(formData.fullName)) newErrors.fullName = "Student name is required."
+    else if (!isValidName(formData.fullName)) newErrors.fullName = "Please enter a valid name."
 
-    // Parent Name validation
-    if (!isRequired(formData.parentName)) {
-      newErrors.parentName = "Parent/Guardian name is required."
-    } else if (!isValidName(formData.parentName)) {
-      newErrors.parentName = "Please enter a valid name (letters, spaces, hyphens, apostrophes only)."
-    }
+    if (!isRequired(formData.parentName)) newErrors.parentName = "Parent/Guardian name is required."
+    else if (!isValidName(formData.parentName)) newErrors.parentName = "Please enter a valid name."
 
-    // Email validation
-    if (!isRequired(formData.email)) {
-      newErrors.email = "Email address is required."
-    } else if (!isValidEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address (e.g., name@example.com)."
-    }
+    if (!isRequired(formData.email)) newErrors.email = "Email is required."
+    else if (!isValidEmail(formData.email)) newErrors.email = "Invalid email."
 
-    // Phone number validation
-    if (!isRequired(formData.contactNumber)) {
-      newErrors.contactNumber = "Contact number is required."
-    } else if (!isValidPhone(formData.contactNumber)) {
-      newErrors.contactNumber = "Please enter a valid phone number (e.g., +966 50 123 4567)."
-    }
+    if (!isRequired(formData.contactNumber)) newErrors.contactNumber = "Phone number is required."
+    else if (!isValidPhone(formData.contactNumber)) newErrors.contactNumber = "Invalid phone number."
 
-    // Country validation
-    if (!isRequired(formData.countryOfResidence)) {
-      newErrors.countryOfResidence = "Country of residence is required."
-    }
-
-    // Grade validation
-    if (!isRequired(formData.studentGrade)) {
-      newErrors.studentGrade = "Student's grade/level is required."
-    }
-
-    // Curriculum validation
-    if (!isRequired(formData.curriculum)) {
-      newErrors.curriculum = "Curriculum is required."
-    }
-
-    // Subjects validation
-    if (!isRequired(formData.subjectsOfInterest)) {
-      newErrors.subjectsOfInterest = "At least one subject of interest is required."
-    }
+    if (!isRequired(formData.countryOfResidence)) newErrors.countryOfResidence = "Country is required."
+    if (!isRequired(formData.studentGrade)) newErrors.studentGrade = "Grade is required."
+    if (!isRequired(formData.curriculum)) newErrors.curriculum = "Curriculum is required."
+    if (!isRequired(formData.subjectsOfInterest)) newErrors.subjectsOfInterest = "Subjects are required."
 
     return newErrors
   }
@@ -164,8 +128,8 @@ const DemoForm = () => {
       setFormStatus("error")
       return
     }
+
     setIsSubmitting(true)
-    // Sanitize all fields
     const safeFormData = Object.keys(formData).reduce((acc, key) => {
       acc[key] = sanitizeInput(formData[key])
       return acc
@@ -177,19 +141,14 @@ const DemoForm = () => {
 
     const templateParams = {
       to_name: "The Oasis Academy",
-      fullName: safeFormData.fullName,
-      parentName: safeFormData.parentName,
-      email: safeFormData.email,
-      contactNumber: safeFormData.contactNumber,
-      countryOfResidence: safeFormData.countryOfResidence,
-      studentGrade: safeFormData.studentGrade,
-      curriculum: safeFormData.curriculum,
-      subjectsOfInterest: safeFormData.subjectsOfInterest,
+      reply_to: safeFormData.email,
+      from_name: safeFormData.fullName,
+      recipient: "theoasisacademypk1@gmail.com",
+      ...safeFormData,
     }
 
-    emailjs
-      .send(serviceId, templateId, templateParams, publicKey)
-      .then((response) => {
+    emailjs.send(serviceId, templateId, templateParams)
+      .then(() => {
         setIsSubmitting(false)
         setFormStatus("success")
         setFormData({
@@ -204,7 +163,7 @@ const DemoForm = () => {
         })
         navigate("/thank-you")
       })
-      .catch((error) => {
+      .catch(() => {
         setIsSubmitting(false)
         setFormStatus("error")
         alert("Something went wrong. Please try again.")
@@ -212,10 +171,7 @@ const DemoForm = () => {
   }
 
   return (
-    <div
-      className="w-full bg-cover bg-center py-16 bg-stone-950 bg-opacity-30 bg-blend-overlay"
-      style={{ backgroundImage: "url('../../../src/assets/DemoForm/freedemo.svg')" }}
-    >
+    <div className="w-full bg-cover bg-center py-16 bg-stone-950 bg-opacity-30 bg-blend-overlay" style={{ backgroundImage: "url('../../../src/assets/DemoForm/freedemo.svg')" }}>
       <div className="mx-auto max-w-[1440px] px-4 flex justify-center">
         <div className="w-full flex flex-col items-center">
           <div className="text-center mb-6">
@@ -232,72 +188,49 @@ const DemoForm = () => {
                 <div key={field.id} className="space-y-2">
                   <label htmlFor={field.id} className="block text-sm font-medium">
                     {field.label}
-                    {(field.id === 'fullName' || field.id === 'studentName' ||
-                      field.id === 'email' ||
-                      field.id === 'contactNumber' || field.id === 'contact' ||
-                      field.id === 'countryOfResidence' || field.id === 'country' ||
-                      field.id === 'studentGrade' || field.id === 'grade' ||
-                      field.id === 'curriculum' ||
-                      field.id === 'subjectsOfInterest' || field.id === 'subject') &&
-                      <span style={{ color: ERROR }} className="ml-1">*</span>}
+                    {['fullName', 'studentName', 'email', 'contactNumber', 'contact', 'countryOfResidence', 'country', 'studentGrade', 'grade', 'curriculum', 'subjectsOfInterest', 'subject'].includes(field.id) && (
+                      <span style={{ color: ERROR }} className="ml-1">*</span>
+                    )}
                   </label>
                   {field.type === "select" ? (
                     <div className="relative">
                       <select
                         id={field.id}
                         name={field.id}
-                        required={field.required}
                         className={`w-full px-3 py-2 border ${errors[field.id] ? `border-[${ERROR}]` : "border-gray-300"} rounded-md appearance-none max-h-12`}
-                        value={formData[field.id]}
+                        value={formData[field.id] || ''}
                         onChange={handleChange}
                       >
-                        <option value="" selected disabled>{getPlaceholder(field.id, field.label)}</option>
+                        <option value="" disabled>{getPlaceholder(field.id, field.label)}</option>
                         {field.options.map((option, index) => (
                           <option key={index} value={typeof option === "object" ? option.value : option}>
                             {typeof option === "object" ? option.label : option}
                           </option>
                         ))}
                       </select>
-                      <FaChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500 pointer-events-none" />
+                      <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none text-gray-400" />
                     </div>
                   ) : (
                     <input
+                      type={field.type || "text"}
                       id={field.id}
                       name={field.id}
-                      type={field.type}
-                      required={field.required}
                       placeholder={getPlaceholder(field.id, field.label)}
-                      className={`w-full px-3 py-2 border ${errors[field.id] ? `border-[${ERROR}]` : "border-gray-300"} rounded-md max-h-12`}
-                      value={formData[field.id]}
+                      className={`w-full px-3 py-2 border ${errors[field.id] ? `border-[${ERROR}]` : "border-gray-300"} rounded-md`}
+                      value={formData[field.id] || ''}
                       onChange={handleChange}
                     />
                   )}
-                  {errors[field.id] && <div style={{ color: ERROR }} className="text-xs mt-1">{errors[field.id]}</div>}
+                  {errors[field.id] && <p className="text-sm" style={{ color: ERROR }}>{errors[field.id]}</p>}
                 </div>
               ))}
-
-              <div className="col-span-1 sm:col-span-2 lg:col-span-3 flex justify-center mt-6">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="text-white font-medium py-3 px-12 rounded-md hover:bg-green-700 transition-colors w-full sm:w-auto max-w-xs"
-                  style={{ backgroundColor: PRIMARY_GREEN }}
-                >
-                  {isSubmitting ? freeDemo.submitButton.loadingText : freeDemo.submitButton.text}
+              <div className="col-span-full">
+                <button type="submit" className="w-full bg-green-600 text-white font-semibold py-2 px-4 rounded hover:bg-green-700" disabled={isSubmitting}>
+                  {isSubmitting ? 'Submitting...' : 'Submit'}
                 </button>
+                {formStatus === "success" && <p className="text-green-600 mt-2">Thank you! Your request was submitted.</p>}
+                {formStatus === "error" && <p className="text-red-600 mt-2">Please fix the errors above and try again.</p>}
               </div>
-
-              {formStatus === "success" && (
-                <div className="col-span-1 md:col-span-3 text-center" style={{ color: PRIMARY_GREEN }}>
-                  {freeDemo.submitButton.successMessage}
-                </div>
-              )}
-
-              {formStatus === "error" && (
-                <div className="col-span-1 md:col-span-3 text-center" style={{ color: ERROR }}>
-                  {freeDemo.submitButton.errorMessage || "Please correct the errors above and try again."}
-                </div>
-              )}
             </form>
           </div>
         </div>
