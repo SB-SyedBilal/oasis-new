@@ -303,6 +303,7 @@ const freeDemo = {
     {
       id: "studentName",
       label: "Student's Full Name",
+      
       type: "text",
       required: true,
     },
