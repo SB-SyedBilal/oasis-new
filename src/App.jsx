@@ -39,7 +39,6 @@ const StandardLayout = ({ children }) => {
 const ThankYouLayout = () => {
   return (
     <>
-      <Navigation />
       <ThankYou />
     </>
   );
